@@ -14,7 +14,6 @@ export class Risalnik {
     // Najprej v atribut `fillStyle` shranimo barvo "svinčnika".
     // Ta barva velja dokler je ponovno ne nastavimo.
     this.ctx.fillStyle = barva;
-    
 
     // Risanje pravokotnika:
     // Z `beginPath` ponastavimo naš "svinčnik".
