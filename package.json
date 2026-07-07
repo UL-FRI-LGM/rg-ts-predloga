@@ -1,0 +1,31 @@
+{
+  "name": "rg-typescript-template",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scurek/rg-template.git"
+  },
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --format=esm --sourcemap --outdir=dist",
+    "watch": "esbuild src/main.ts --bundle --format=esm --sourcemap --outdir=dist --watch",
+    "serve": "serve -l 3000 .",
+    "dev": "concurrently \"npm:watch\" \"npm:serve\""
+  },
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "resolveFullExtension": ".js"
+  },
+  "devDependencies": {
+    "@webgpu/types": "^0.1.71",
+    "concurrently": "^10.0.3",
+    "esbuild": "^0.28.1",
+    "typescript": "^6.0.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
+  },
+  "dependencies": {
+    "serve": "^14.2.6"
+  }
+}

@@ -1,0 +1,14 @@
+{
+    "crke": {
+        "r": {
+            "levo": 20,
+            "zgoraj": 20,
+            "barva": "#ff0000"
+        },
+        "g": {
+            "levo": 320,
+            "zgoraj": 20,
+            "barva": "#ff0000"
+        }
+    }
+}

@@ -1,0 +1,6 @@
+{
+  "recommendations": [
+    // WGSL Analyzer
+    "wgsl-analyzer.wgsl-analyzer",
+  ]
+}
