@@ -5,7 +5,12 @@ export class Risalnik {
     this.ctx = ctx;
   }
 
-  narisiR(odmik: { levo: number; zgoraj: number } = { levo: 0, zgoraj: 0 }) {
+  narisiR(
+    barva: string,
+    odmik: { levo: number; zgoraj: number } = { levo: 0, zgoraj: 0 },
+  ) {
+    this.ctx.fillStyle = barva;
+
     this.ctx.beginPath();
     this.ctx.rect(odmik.levo, odmik.zgoraj, 160, 140);
     this.ctx.stroke();
@@ -21,7 +26,12 @@ export class Risalnik {
     this.ctx.stroke();
   }
 
-  narisiG(odmik: { levo: number; zgoraj: number } = { levo: 0, zgoraj: 0 }) {
+  narisiG(
+    barva: string,
+    odmik: { levo: number; zgoraj: number } = { levo: 0, zgoraj: 0 },
+  ) {
+    this.ctx.fillStyle = barva;
+
     this.ctx.beginPath();
     this.ctx.moveTo(160 + odmik.levo, odmik.zgoraj);
     this.ctx.lineTo(odmik.levo, odmik.zgoraj);

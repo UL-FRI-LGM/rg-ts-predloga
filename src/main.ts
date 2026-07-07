@@ -1,3 +1,4 @@
+import { preberiDatoteko } from "./bralnik";
 import { Risalnik } from "./crke";
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
@@ -9,8 +10,12 @@ if (!ctx) {
 
 const risalnik = new Risalnik(ctx);
 
+const podatki = await preberiDatoteko("data/podatki.json");
+
 // R
-risalnik.narisiR({ levo: 20, zgoraj: 20 });
+const crkaR = podatki.crke.r;
+risalnik.narisiR(crkaR.barva, { levo: crkaR.levo, zgoraj: crkaR.zgoraj });
 
 // G
-risalnik.narisiG({ levo: 320, zgoraj: 20 });
+const crkaG = podatki.crke.g;
+risalnik.narisiG(crkaG.barva, { levo: crkaG.levo, zgoraj: crkaG.zgoraj });
