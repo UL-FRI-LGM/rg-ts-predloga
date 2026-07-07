@@ -1,9 +1,17 @@
 import { preberiDatoteko } from "./bralnik";
 import { Risalnik } from "./crke";
 
+// Platno iz HTML dokumenta lahko pridobimo prek njegovega ID-ja.
+// Ta ID smo nastavili v HTML datoteki (id="canvas")
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+
+// Za risanje na platno potrebujemo kontekst - vmesnik, ki nam
+// ponuja funkcionalnosti risanja. Pridobimo ga s platna.
 const ctx = canvas.getContext("2d");
 
+// canvas.getContext("2d") lahko vrne vmesnik ali pa null.
+// Za razliko od Jave, moramo v Typescript-u moramo primere ko je spremenjivka,
+// lahko null eksplicitno preveriti.
 if (!ctx) {
   throw new Error("Failed to get canvas context");
 }
