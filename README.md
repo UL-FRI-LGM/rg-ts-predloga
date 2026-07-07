@@ -48,3 +48,11 @@ To prevajanje bi načeloma morali izvajati ročno, vendar je v tem primeru to av
 
 #### Zakaj je potrebno zagnati strežnik?
 Brskalniki imajo varnostne omejitve, ki preprečujejo nalaganje datotek iz lokalnega datotečnega sistema. To nam povzroča probleme, ko želimo tekom programa brati dodatne datoteke z diska, kot so slike, teksture ali 3D modeli. Zagon strežnika pa omogoča, da brskalnik te datoteke naloži preko HTTP protokola,  kot bi to počeli pri prenašanju vsebin iz oddaljenih strežnikov.
+
+### 4. Razhroščevanje z Visual Studio Code
+Za lažje delo z TypeScript-om, priporočamo uporabo urejevalnika Visual Studio Code, saj je drugače razhroščevanje kode, ki se poganja v brskalniku nekoliko nerodno. Visual Studio Code pa ima že vgrajeno funkcionalnost razhroščevanje Typescript kode, vključno z podporo za "breakpoint-e" v brskalniku. Za lažje delo smo vam že pripravili konfiguracijo razhroščevanja, ki se nahaja v `.vscode/launch.json`, uporabite jo pa takole:
+1. V terminalu zaženite strežnik (npr. z ukazom `npm run dev`).
+2. Dodajte "breakpoint-e" v kodo, kjer želite, da se program ustavi.
+3. V meniju `Run and Debug` (`Ctrl + Shift + D`) izberite možnost `Run and Debug`, nato pa izberite možnost `Debug with Chrome`.
+4. Kliknite na gumb `Run` (zelena puščica) in počakajte, da se brskalnik odpre. Dostop do kontrol za razhroščevanje je na voljo preko menija, ki se ob razhroščevanju pojavi nad urejevalnikom kode.
+5. Če žalite program ponovno zagnati, je dovolj da brskalnik osvežite, prav tako pa lahko "breakpoint-e" dodajate ali odstranjujete med izvajanjem programa.
