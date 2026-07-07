@@ -10,8 +10,8 @@ const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const ctx = canvas.getContext("2d");
 
 // canvas.getContext("2d") lahko vrne vmesnik ali pa null.
-// Za razliko od Jave, moramo v Typescript-u moramo primere ko je spremenjivka,
-// lahko null eksplicitno preveriti.
+// Za razliko od Jave moramo v Typescriptu primere, kadar
+// je spremenjivka lahko null, eksplicitno preveriti.
 if (!ctx) {
   throw new Error("Failed to get canvas context");
 }
