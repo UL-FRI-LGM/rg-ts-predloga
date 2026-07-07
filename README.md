@@ -1,4 +1,4 @@
-# Predloga za delo z TypeScript-om pri Računalniški Grafiki
+# Predloga za delo s TypeScript-om pri Računalniški grafiki
 
 
 ## Nekaj uporabnih povezav
