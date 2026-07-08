@@ -13,7 +13,7 @@ interface Crka {
     Več o vmesnikih v Typescriptu si lahko preberete na:
     https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces
 */
-interface Podatki {
+export interface Podatki {
   crke: {
     r: Crka;
     g: Crka;

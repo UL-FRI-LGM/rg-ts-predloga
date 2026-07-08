@@ -1,4 +1,4 @@
-import { preberiDatoteko } from "./bralnik";
+import { preberiDatoteko, type Podatki } from "./bralnik";
 import { Risalnik } from "./crke";
 
 // Platno iz HTML dokumenta lahko pridobimo prek njegovega ID-ja.
@@ -10,7 +10,7 @@ const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const ctx = canvas.getContext("2d");
 
 // canvas.getContext("2d") lahko vrne vmesnik ali pa null.
-// Za razliko od Jave moramo v Typescriptu primere, kadar
+// Za razliko od Jave moramo v TypeScriptu primere, kadar
 // je spremenjivka lahko null, eksplicitno preveriti.
 if (!ctx) {
   throw new Error("Failed to get canvas context");
@@ -27,3 +27,75 @@ risalnik.narisiR(crkaR.barva, { levo: crkaR.levo, zgoraj: crkaR.zgoraj });
 // G
 const crkaG = podatki.crke.g;
 risalnik.narisiG(crkaG.barva, { levo: crkaG.levo, zgoraj: crkaG.zgoraj });
+
+// Konfiguracija drag-and-drop funkcionalnosti
+
+/*
+  Zakaj je na koncu te vrstice '!'? Kot smo omenili zgoraj TypeScript od
+  nas zahteva, da eksplicitno preverimo, ali je spremenljivka null.
+  Vendar pa vemo, da bo element z ID-jem "fileInput" vedno prisoten v HTML
+  dokumentu, zato lahko uporabimo '!', da TypeScriptu obljubimo, da je
+  spremenljivka zagotovo definirana.
+*/
+const fileInput = document.querySelector<HTMLInputElement>("#fileInput")!;
+
+// V tej funkciji bomo definirali kaj se zgodi z datoteko ko jo uporabnik
+// spusti na canvas ali izbere prek "file inputa".
+async function obdelajDatoteko(file: File) {
+  console.log("Dropped file:", file.name, file.type);
+  const text = await file.text();
+  const data: Podatki = JSON.parse(text);
+
+  ctx?.clearRect(0, 0, canvas.width, canvas.height);
+
+  const crkaR = data.crke.r;
+  risalnik.narisiR(crkaR.barva, { levo: crkaR.levo, zgoraj: crkaR.zgoraj });
+
+  const crkaG = data.crke.g;
+  risalnik.narisiG(crkaG.barva, { levo: crkaG.levo, zgoraj: crkaG.zgoraj });
+}
+
+// Brez tega nam brskalnik ne bo dovolil spustiti datoteke na canvas.
+canvas.addEventListener("dragover", (event) => {
+  event.preventDefault();
+});
+
+/*
+  Tu definiramo kaj se zgodi, ko uporabnik spusti datoteko na canvas.
+  Datoteko pridobimo iz event.dataTransfer.files, ki je seznam vseh datotek, 
+  ki jih je uporabnik spustil. Datoteko bi lahko obdelali kar tukaj, vendar 
+  je boljša praksa, da to funkcionalnost definiramo v ločeni funkciji, saj jo 
+  bomo potrebovali tudi, če datoteko izberemo prek uporabniškega vmesnika "file input".
+*/
+canvas.addEventListener("drop", (event) => {
+  event.preventDefault();
+
+  const file = event.dataTransfer?.files[0];
+  if (!file) return;
+
+  obdelajDatoteko(file);
+});
+
+/*
+  Trik, s katerim omogočimo, da kliku na canvas odpre uporabniški vmesnik "file input".
+*/
+canvas.addEventListener("click", () => {
+  fileInput.click();
+});
+/*
+  Tu definiramo kaj se zgodi, ko uporabnik izbere datoteko prek
+  uporabniškega vmesnika "file input".
+  Podobno kot zgoraj, datoteko obdelamo v ločeni funkciji.
+*/
+fileInput.addEventListener("change", () => {
+  const file = fileInput.files?.[0];
+  if (!file) return;
+
+  obdelajDatoteko(file);
+
+  // Po obdelavi datoteke počistimo "file input", da lahko uporabnik
+  // isto datoteko izbere večkrat.¸
+  fileInput.value = "";
+});
+
+// Konec konfiguracije drag-and-drop

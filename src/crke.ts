@@ -1,3 +1,5 @@
+// Pred oznako class smo dodali export, da lahko našo razred izvozimo in ga
+// uporabimo tudi v drugih datotekah. Podobno lahko storimo tudi z vmesniki in funkcijami.
 export class Risalnik {
   ctx: CanvasRenderingContext2D;
 
@@ -22,7 +24,6 @@ export class Risalnik {
     this.ctx.rect(odmik.levo, odmik.zgoraj, 160, 140);
     // S `stroke` izrišemo trenutno obliko.
     this.ctx.stroke();
-
 
     // Risanje črt:
     // Z `beginPath` ponastavimo naš "svinčnik".
