@@ -1,4 +1,4 @@
-import { preberiDatoteko, type Podatki } from "./bralnik";
+import { preberiDatoteko, preberiNalozenoDatoteko } from "./bralnik";
 import { Risalnik } from "./crke";
 
 // Platno iz HTML dokumenta lahko pridobimo prek njegovega ID-ja.
@@ -53,19 +53,20 @@ const fileInput = document.querySelector<HTMLInputElement>("#fileInput")!;
  https://developer.mozilla.org/en-US/docs/Web/API/File
 */
 async function obdelajDatoteko(file: File) {
-  console.log("Dropped file:", file.name, file.type);
-  const text = await file.text();
-  const data: Podatki = JSON.parse(text);
+  console.log("Obdelujem datoteko:", file.name, file.type);
+  const podatki = await preberiNalozenoDatoteko(file);
 
   const canvas = document.querySelector<HTMLCanvasElement>("#canvas")!;
   const ctx = canvas.getContext("2d")!;
+
+  // S funkcijo clearRect počistimo platno, da se nove črke na bodo risale povrhu prejšnjih.
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   const risalnik = new Risalnik(ctx);
-  const crkaR = data.crke.r;
+  const crkaR = podatki.crke.r;
   risalnik.narisiR(crkaR.barva, { levo: crkaR.levo, zgoraj: crkaR.zgoraj });
 
-  const crkaG = data.crke.g;
+  const crkaG = podatki.crke.g;
   risalnik.narisiG(crkaG.barva, { levo: crkaG.levo, zgoraj: crkaG.zgoraj });
 }
 
