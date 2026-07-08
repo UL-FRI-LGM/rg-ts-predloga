@@ -30,6 +30,15 @@ const risalnik = new Risalnik(ctx);
 
 const podatki = await preberiDatoteko("data/podatki.json");
 
+/*
+  V JavaScriptu in TypeScriptu lahko podatke v konzolo izpišemo s funkcijo console.log(). 
+  Izpis lahko vidimo v brskalniku, če odpremo "Developer Tools" 
+  (v Chrome: Ctrl+Shift+I ali F12, v Firefox: Ctrl+Shift+K ali F12).
+  V kolikor uporabljamo razhroščevalnik opisan v Readme datoteki, 
+  pa se izpis pojavi tudi v terminalu "Debug Console".
+*/
+console.log("Prebrani podatki:", podatki);
+
 // R
 const crkaR = podatki.crke.r;
 risalnik.narisiR(crkaR.barva, { levo: crkaR.levo, zgoraj: crkaR.zgoraj });
