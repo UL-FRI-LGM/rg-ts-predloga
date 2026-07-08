@@ -4,6 +4,15 @@
 #### TypeScript dokumentacija: [https://www.typescriptlang.org/docs/](https://www.typescriptlang.org/docs/)
 #### Asinhronost v JavaScriptu (velja tudi za TypeScript): [https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS)
 
+
+## Vsebina
+Predloga vsebuje:
+- osnovno strukturo TypeScript projekta, ki vključuje datoteko `package.json`, v kateri so definirane odvisnosti in skripte za prevajanje in zagon programa, ter mapo 'src', v kateri se nahajajo vse datoteke z izvorno kodo,
+- html datoteko `index.html`, ki vsebuje `<canvas>` element na katerega bomo risali,
+- datoteko `main.ts`, ki je vstopna točka programa, vsebuje pa tudi implementacijo funkcionalnosti drag-and-drop za nalaganje datotek, ki vam zna priti prav pri domačih nalogah,
+- datoteko `bralnik.ts`, ki vsebuje funkcijo za branje datoteke iz lokalnega diska in pretvorbo v TypeScript objekt,
+- datoteko `risalnik.ts`, ki vsebuje razred, ki omogoča risanje črk na platno,
+
 ## Postavitev okolja
 
 ### 1. Namestitev Node.js

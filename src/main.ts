@@ -2,19 +2,29 @@ import { preberiDatoteko, type Podatki } from "./bralnik";
 import { Risalnik } from "./crke";
 
 // Platno iz HTML dokumenta lahko pridobimo prek njegovega ID-ja.
-// Ta ID smo nastavili v HTML datoteki (id="canvas")
-const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+// Ta ID smo nastavili v HTML datoteki (id="canvas").
+const canvas = document.querySelector<HTMLCanvasElement>("#canvas");
 
-// Za risanje na platno potrebujemo kontekst - vmesnik, ki nam
-// ponuja funkcionalnosti risanja. Pridobimo ga s platna.
-const ctx = canvas.getContext("2d");
-
-// canvas.getContext("2d") lahko vrne vmesnik ali pa null.
-// Za razliko od Jave moramo v TypeScriptu primere, kadar
-// je spremenjivka lahko null, eksplicitno preveriti.
-if (!ctx) {
+/*
+  funkcija document.querySelector lahko vrne html element ali pa null, 
+  ča te ne obstaja. Za razliko od Jave moramo v TypeScriptu primere, kadar
+  je spremenjivka lahko null, eksplicitno preveriti.
+*/
+if (!canvas) {
   throw new Error("Failed to get canvas context");
 }
+
+/*
+  Za risanje na platno potrebujemo kontekst - vmesnik, ki nam
+  ponuja funkcionalnosti risanja. Pridobimo ga s platna.
+
+  Zakaj je na koncu te vrstice '!'? Kot smo omenili zgoraj TypeScript od
+  nas zahteva, da eksplicitno preverimo, ali je spremenljivka null.
+  Vendar pa vemo, da vsak modern brskalnik podpira 2D kontekst, 
+  zato lahko uporabimo '!', da TypeScriptu obljubimo, da spremenljivka ctx
+  zagotovo ni null.
+*/
+const ctx = canvas.getContext("2d")!;
 
 const risalnik = new Risalnik(ctx);
 
@@ -28,26 +38,30 @@ risalnik.narisiR(crkaR.barva, { levo: crkaR.levo, zgoraj: crkaR.zgoraj });
 const crkaG = podatki.crke.g;
 risalnik.narisiG(crkaG.barva, { levo: crkaG.levo, zgoraj: crkaG.zgoraj });
 
+// -----------------
 // Konfiguracija drag-and-drop funkcionalnosti
+// -----------------
 
-/*
-  Zakaj je na koncu te vrstice '!'? Kot smo omenili zgoraj TypeScript od
-  nas zahteva, da eksplicitno preverimo, ali je spremenljivka null.
-  Vendar pa vemo, da bo element z ID-jem "fileInput" vedno prisoten v HTML
-  dokumentu, zato lahko uporabimo '!', da TypeScriptu obljubimo, da je
-  spremenljivka zagotovo definirana.
-*/
+// Pridobimo skrit html element input, ki nam bo olajšal implementacijo.
 const fileInput = document.querySelector<HTMLInputElement>("#fileInput")!;
 
-// V tej funkciji bomo definirali kaj se zgodi z datoteko ko jo uporabnik
-// spusti na canvas ali izbere prek "file inputa".
+/*
+ V tej funkciji bomo definirali kaj se zgodi z datoteko ko jo uporabnik
+ spusti na canvas ali izbere prek "file inputa".
+ Fukcija prejme parameter tipa File, ki je vgrajen tip v JavaScriptu in TypeScriptu.
+ Več o tem tipu si lahko preberete na:
+ https://developer.mozilla.org/en-US/docs/Web/API/File
+*/
 async function obdelajDatoteko(file: File) {
   console.log("Dropped file:", file.name, file.type);
   const text = await file.text();
   const data: Podatki = JSON.parse(text);
 
-  ctx?.clearRect(0, 0, canvas.width, canvas.height);
+  const canvas = document.querySelector<HTMLCanvasElement>("#canvas")!;
+  const ctx = canvas.getContext("2d")!;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  const risalnik = new Risalnik(ctx);
   const crkaR = data.crke.r;
   risalnik.narisiR(crkaR.barva, { levo: crkaR.levo, zgoraj: crkaR.zgoraj });
 
