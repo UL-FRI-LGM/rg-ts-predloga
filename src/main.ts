@@ -1,5 +1,5 @@
-import { preberiDatoteko, preberiNalozenoDatoteko } from "./bralnik";
-import { Risalnik } from "./crke";
+import { preberiDatoteko, preberiNalozenoDatoteko } from "./bralnik.ts";
+import { Risalnik } from "./crke.ts";
 
 // Platno iz HTML dokumenta lahko pridobimo prek njegovega ID-ja.
 // Ta ID smo nastavili v HTML datoteki (id="canvas").

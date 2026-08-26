@@ -18,7 +18,7 @@ Predloga vsebuje:
 ### 1. Namestitev Node.js
 Za delo s TypeScriptom moramo namestiti [Node.js](https://nodejs.org/).
 
-*Neposredna povezava do namestitvenega paketa za Windows: [LINK](https://nodejs.org/dist/v24.18.0/node-v24.18.0-x64.msi)*
+*Neposredna povezava do namestitvenega paketa za Windows: [LINK](https://nodejs.org/dist/v24.19.0/node-v24.19.0-x64.msi)*
 
 Uspešnost namestitve preverimo tako, da v terminalu izpišemo verzijo Node.js in npm (Node Package Manager) z ukazoma:
 
@@ -56,7 +56,7 @@ npm run dev
 Do strežnika dostopamo preko povezave: [http://localhost:3000/](http://localhost:3000/). Če želimo strežnik ustaviti, to storimo v terminalu s kombinacijo tipk `Ctrl + C`.
 
 `npm run dev` je ukaz, definiran v datoteki `package.json`. Sestavljen je iz dveh delov, ki se izvajata vzporedno:
-- `esbuild src/main.ts --bundle --format=esm --sourcemap --outdir=dist --watch`, ki skrbi za prevajanje TypeScript kode v JavaScript kodo vsakič, ko se spremeni katera od datotek, povezana z `src/main.ts`.
+- `tsc --watch`, ki skrbi za prevajanje TypeScript kode v JavaScript kodo vsakič, ko se spremeni katera od datotek v mapi `src` (natančneje v mapi, ki je navedena pod `compilerOptions -> rootDir` v datoteki `tsconfig.json`).
 - `serve -l 3000 .`, ki zažene strežnik v korenski mapi na naslovu localhost in vratih 3000.
 
 #### Zakaj je treba prevajati TypeScript kodo v JavaScript kodo?
