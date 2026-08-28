@@ -1,17 +1,37 @@
 # Predloga za delo s TypeScriptom pri predmetu Računalniška grafika
 
-## Nekaj uporabnih povezav
+## FAQ
+1. **JavaScript, TypeScript, zakaj se moram *spet* učiti nov programski jezik?** Na kratko, temu se pri predmetu o računalniški grafiki res težko izognemo. Sodobne namizne aplikacije, ki uporabljajo grafične vmesnike, kot so Vulkan, DirectX in Metal, so običajno napisane v C++ ali Rust-u. Na srečo pa obstaja tudi moderna alternativa, ki omogoča razvoj grafičnih aplikacij v brskalniku, in sicer WebGPU, ki je ne le preprostejša za začetnike, temveč tudi omogoča razvoj v programskih jezikih JavaScript in TypeScript, ki sta prav tako precej bolj dostopna.
+2. **Kaj je razlika med JavaScriptom in TypeScriptom, zakaj zvenita tako podobno?** JavaScript je programski jezik, ki ga brskalniki razumejo in izvajajo. Ta odločitev je padla ob koncu 20. stoletja in od takrat more svet živeti z njo. Kljub imenu nima nobene povezave z Javo, v veliko aspektih je celo bolj podoben Pythonu. TypeScript je nadgradnja JavaScripta, ki omogoča uporabo tipov in s tem preprečuje številne napake, čez katere bi se spotaknili šele med izvajanjem (odpravljanje takih napak je v brskalniku za začetnike še posebej nerodno). Dandanes je TypeScript praktično industrijski standard za razvoj spletnih aplikacij, zato res ni posebnega razloga, da bi se ga otepali. Ker pa brskalniki ne razumejo TypeScripta, moramo kodo v TypeScriptu najprej prevesti v JavaScript, podobno kot je potrebno prevesti kodo v Javi ali C++ v strojno kodo, da jo lahko računalnik razume in izvede. Na srečo je dandanes prevajanje TypeScripta v JavaScript precej enostavno in smo ga za vaše potrebe pri tem predmetu popolnoma automatizirali.
+
+## Čtivo (preskoči na lastno odgovornost)
+### Obvezno branje za tiste, ki se prvič srečujete s JavaScriptom oz. TypeScriptom:
+#### TypeScript za poznavalca Jave: [https://comp426-25s.github.io/readings/r02-TypeScript-for-Java-Developer](https://comp426-25s.github.io/readings/r02-TypeScript-for-Java-Developer)
+#### Asinhronost: [https://web.mit.edu/6.102/www/sp24/classes/15-promises/](https://web.mit.edu/6.102/www/sp24/classes/15-promises/)
+
+### Za tiste, ki ste že precej domači z JavaScriptom:
+#### Kratek povzetek sintakse TypeScripta: [https://learnxinyminutes.com/typescript/](https://learnxinyminutes.com/typescript/)
+#### Uradni TypeScript priročnik: [https://www.typescriptlang.org/docs/handbook/intro.html](https://www.typescriptlang.org/docs/handbook/intro.html)
+#### Asinhronost: [https://web.mit.edu/6.102/www/sp24/classes/15-promises/](https://web.mit.edu/6.102/www/sp24/classes/15-promises/)
+
+### Nekaj uporabnih povezav:
 #### TypeScript dokumentacija: [https://www.typescriptlang.org/docs/](https://www.typescriptlang.org/docs/)
-#### Asinhronost v JavaScriptu (velja tudi za TypeScript): [https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS)
+#### Kratek povzetek sintakse JavaScripta (in mnogih mogočih grdobij v tem jeziku): [https://learnxinyminutes.com/javascript/](https://learnxinyminutes.com/javascript/)
+#### Pogljobljena asinhronost v JavaScriptu (velja tudi za TypeScript): [https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS)
 
 
-## Vsebina
+
+## Opis predloge
 Predloga vsebuje:
 - osnovno strukturo TypeScript projekta, ki vključuje datoteko `package.json`, v kateri so definirane odvisnosti in skripte za prevajanje in zagon programa, ter mapo 'src', v kateri se nahajajo vse datoteke z izvorno kodo,
 - html datoteko `index.html`, ki vsebuje `<canvas>` element na katerega bomo risali,
 - datoteko `main.ts`, ki je vstopna točka programa, vsebuje pa tudi implementacijo funkcionalnosti drag-and-drop za nalaganje datotek, ki vam zna priti prav pri domačih nalogah,
 - datoteko `bralnik.ts`, ki vsebuje funkcijo za branje datoteke iz lokalnega diska in pretvorbo v TypeScript objekt,
 - datoteko `risalnik.ts`, ki vsebuje razred, ki omogoča risanje črk na platno,
+
+## Pisanje kode
+Vsa koda, ki jo boste pisali v TypeScriptu, se mora nahajati v direktoriju `src`, saj jih drugače prevajalnik ne bo našel. Direktorij kjer prevajalnik išče datoteke lahko spremenimo v datoteki `tsconfig.json` (`compilerOptions -> rootDir`). Prav tako mora biti ta vkjučena v korenski datoteki `index.html` preko `<script>` značke, ki mora vsebovati pot do prevedene JavaScript datoteke, ki se nahaja v mapi `dist`. V primeru, da bi želeli spremeniti mapo, kamor se shranjuje prevedena koda, to lahko storite v datoteki `tsconfig.json` (`compilerOptions -> outDir`).
+
 
 ## Postavitev okolja
 
