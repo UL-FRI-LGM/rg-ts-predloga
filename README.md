@@ -76,7 +76,7 @@ npm run dev
 Do strežnika dostopamo preko povezave: [http://localhost:3000/](http://localhost:3000/). Če želimo strežnik ustaviti, to storimo v terminalu s kombinacijo tipk `Ctrl + C`.
 
 `npm run dev` je ukaz, definiran v datoteki `package.json`. Sestavljen je iz dveh delov, ki se izvajata vzporedno:
-- `tsc --watch`, ki skrbi za prevajanje TypeScript kode v JavaScript kodo vsakič, ko se spremeni katera od datotek v mapi `src` (natančneje v mapi, ki je navedena pod `compilerOptions -> rootDir` v datoteki `tsconfig.json`).
+- `esbuild src/main.ts --bundle --format=esm --sourcemap --outdir=dist --watch`, ki skrbi za prevajanje TypeScript kode v JavaScript kodo vsakič, ko se spremeni katera od datotek, povezana z `src/main.ts`.
 - `serve -l 3000 .`, ki zažene strežnik v korenski mapi na naslovu localhost in vratih 3000.
 
 #### Zakaj je treba prevajati TypeScript kodo v JavaScript kodo?

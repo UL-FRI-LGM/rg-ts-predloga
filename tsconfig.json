@@ -6,17 +6,16 @@
     "outDir": "./dist",
 
     // Environment Settings
-    "module": "nodenext",
+    "module": "esnext",
     "target": "esnext",
-    "moduleResolution": "nodenext",
-    "lib": ["DOM"],
+    "moduleResolution": "bundler",
+    "lib": ["DOM", "ESNext"],
     "types": ["@webgpu/types"],
 
     // Output
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
-    "rewriteRelativeImportExtensions": true,
 
     // Recommended Options
     "strict": true,
