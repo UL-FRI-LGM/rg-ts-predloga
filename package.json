@@ -5,21 +5,11 @@
   "type": "module",
   "scripts": {
     "check": "tsc --noEmit",
-    "build": "esbuild src/main.ts --bundle --format=esm --sourcemap --outdir=dist",
-    "watch": "esbuild src/main.ts --bundle --format=esm --sourcemap --outdir=dist --watch",
-    "serve": "serve -l 3000 .",
-    "dev": "concurrently \"npm:watch\" \"npm:serve\""
+    "dev": "vite dev --port 3000"
   },
   "devDependencies": {
     "@webgpu/types": "^0.1.72",
-    "concurrently": "^10.0.5",
-    "esbuild": "^0.28.2",
-    "typescript": "^7.0.2"
-  },
-  "allowScripts": {
-    "esbuild": true
-  },
-  "dependencies": {
-    "serve": "^14.2.6"
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1"
   }
 }
