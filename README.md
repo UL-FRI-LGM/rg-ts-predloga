@@ -80,8 +80,19 @@ Do strežnika dostopamo preko povezave: [http://localhost:3000/](http://localhos
 
 `npm run dev` je ukaz, definiran v datoteki `package.json`. Ta preprosto zažene knjižnico `Vite`, ki poskrbi za prevajanje TypeScripta v JavaScript, zagon strežnika, ki servira vsebino mape in osveževanje strani ob spremembah v kodi. Z zastavico `--port 3000` smo določili, da bo strežnik poslušal na vratih 3000.
 
+#### Izvajanje skript v PowerShellu
+Če ste uporabniki Windowsa, se vam ob zagonu ukaza `npm run dev` prek PowerShella lahko pojavi napaka, ki pravi, da je izvajanje skript onemogočeno:
+```powershell
+npm : File C:\nvm4w\nodejs\npm.ps1 cannot be loaded because running scripts is disabled on this system.
+```
+
+To je posledica varnostne nastavitve [Windows Execution Policy](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies), ki varuje sistem, predvsem pred vami in pa včasih tudi zlonamernimi skriptami. Kot naprednejši uporabniki, lahko to rešimo tako, da odpremo PowerShell kot administrator in izvedemo ukaz:
+```powershell
+Set-ExecutionPolicy RemoteSigned
+```
+
 #### O nepravilnosti postavitve okolja
-Tisti, ki ste že kdaj uporabljali Vite za razvoj spletnih aplikacij boste opazili, da je ta struktura projekta nepravilna in [ne deluje v produkciji](https://vite.dev/guide/build). Z drugimi besedami, medtem ko lahko uporabimo ukaz `vite dev` za razvojno postavitev, nam `vite build` ne bi deloval pravilno. Vite namreč ob izgradnji ustvari mapo `dist` in vanjo postavi prevedene JavaScript datoteke, skupaj z vsebino mape `public`, ki je nato dostopna preko strežnika. To pa bi pomenilo, da do datotek v mapi `data` nebi imeli več dostopa. Seveda je vse to nastavljivo, vendar bi s tem vpletni le dodatne komplikacije saj bi se morali ob delu ukvarjati še s datotečno strukturo.
+Tisti, ki ste že kdaj uporabljali Vite za razvoj spletnih aplikacij boste opazili, da je ta struktura projekta nepravilna in [ne deluje v produkciji](https://vite.dev/guide/build). Z drugimi besedami, medtem ko lahko uporabimo ukaz `vite dev` za razvojno postavitev, nam `vite build` ne bi deloval pravilno. Vite namreč ob izgradnji ustvari mapo `dist` in vanjo postavi prevedene JavaScript datoteke, skupaj z vsebino mape `public`, ki je nato dostopna preko strežnika. To pa bi pomenilo, da do datotek v mapi `data` nebi imeli več dostopa. Seveda je vse to nastavljivo, vendar bi s tem vpletli le dodatne komplikacije saj bi se morali ob delu ukvarjati še s datotečno strukturo. Na kratko, za potrebe vaj in domačih nalog bo kar dovolj, da uporabljamo razvojno postavitev.
 
 ## Razhroščevanje z Visual Studio Code
 Za lažje delo s TypeScriptom priporočamo uporabo urejevalnika Visual Studio Code, saj je razhroščevanje kode, ki se poganja v brskalniku, sicer nekoliko nerodno. Visual Studio Code ima že vgrajeno funkcionalnost razhroščevanja TypeScript kode, vključno s podporo za "breakpointe" oz. zaustavitvene točke v brskalniku. Za lažje delo smo vam že pripravili konfiguracijo razhroščevanja, ki se nahaja v `.vscode/launch.json`, uporabite pa jo takole:
