@@ -34,7 +34,7 @@ Predloga vsebuje:
 ### 1. Namestitev Node.js
 Za delo s TypeScriptom moramo namestiti [Node.js](https://nodejs.org/).
 
-*Neposredna povezava do namestitvenega paketa za Windows: [LINK](https://nodejs.org/dist/v24.19.0/node-v24.19.0-x64.msi)*
+*Neposredna povezava do namestitvenega paketa za Windows: [LINK](https://nodejs.org/dist/v24.22.1/node-v24.22.1-x64.msi)*
 
 Node.js je okolje za izvajanje TypeScripta in JavaScripta neposredno na vašem računalniku. Okolje moramo namestiti, podobno kot ste morali namestiti JDK za Javo oz. *Python* za Python. *No pri Javi, je ta, če ste uporabljali IntelliJ prišel kar nameščen z integriranim razvojnim okoljem.* Mi ga bomo uporabljali za prevajanje TypeScripta v JavaScript, končni program pa se bo izvedel v brskalniku. Natančneje bo za prevajanje v našem primeru skrbela knjižica [`Vite`](https://vite.dev/), ki je vključena v predlogo. Kako to počne in kaj se dogaja v ozadju ni predmet računalniške grafike, temveč spletnega programiranja, zato se s tem ne bomo ukvarjali.
 
